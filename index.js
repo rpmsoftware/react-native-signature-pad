@@ -1,12 +1,8 @@
-'use strict';
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {
-  ViewPropTypes,
-  WebView,
-  StyleSheet,
-} from 'react-native';
+import {StyleSheet, View, ViewPropTypes} from 'react-native';
+import {WebView} from 'react-native-webview';
+
 
 import htmlContent from './injectedHtml';
 import injectedSignaturePad from './injectedJavaScript/signaturePad';
@@ -14,7 +10,8 @@ import injectedApplication from './injectedJavaScript/application';
 import injectedErrorHandler from './injectedJavaScript/errorHandler';
 import injectedExecuteNativeFunction from './injectedJavaScript/executeNativeFunction';
 
-class SignaturePad extends Component {
+export default class SignaturePad extends Component {
+
   static propTypes = {
     onChange: PropTypes.func,
     onError: PropTypes.func,
@@ -162,26 +159,23 @@ class SignaturePad extends Component {
   _renderLoading = (args) => {
   };
 
-  _onMessage = (event) => {
+  onMessage = (event) => {
     var base64DataUrl = JSON.parse(event.nativeEvent.data);
     this._bridged_finishedStroke(base64DataUrl);
   }
 
   render = () => {
     return (
-      <WebView
-        automaticallyAdjustContentInsets={false}
-        onNavigationStateChange={this._onNavigationChange}
-        onMessage={this._onMessage}
-        renderError={this._renderError}
-        renderLoading={this._renderLoading}
-        source={this.source}
-        scrollEnabled={false}
-        javaScriptEnabled={true}
-        style={this.props.style}
-      />
-    );
+        <WebView automaticallyAdjustContentInsets={false}
+                 onNavigationStateChange={this._onNavigationChange}
+                 onMessage={this.onMessage}
+                 renderError={this._renderError}
+                 renderLoading={this._renderLoading}
+                 source={this.source}
+                 scrollEnabled={false}
+                 javaScriptEnabled={true}
+                 style={this.props.style}/>
+    )
   };
 }
 
-module.exports = SignaturePad;
