@@ -42,7 +42,7 @@ var content = (penColor, backgroundColor, dataURL, penMinWidth, penMaxWidth, use
   var canvasElement = document.querySelector("canvas");
 
   var finishedStroke = function(base64DataUrl) {
-    window.postMessage(JSON.stringify({ base64DataUrl: base64DataUrl }));
+    executeNativeFunction('finishedStroke', { base64DataUrl: base64DataUrl });
   };
 
   if (${useFont}) {
