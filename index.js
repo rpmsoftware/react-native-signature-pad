@@ -61,9 +61,9 @@ export default class SignaturePad extends Component {
     //  React Native app, the JS is re-injected every time a stroke is drawn.
   }
 
-  componentWillReceiveProps = (nextProps) => {
-    if (this.props.useFont && this.state.name !== nextProps.name) {
-      var escapedName = nextProps.name.replace(/"/, `\\"`);
+  componentDidUpdate = (prevProps) => {
+    if (this.props.useFont && prevProps.name !== this.props.name) {
+      const escapedName = this.props.name.replace(/"/, `\\"`);
       this.setState({ name: escapedName });
 
       const { backgroundColor } = StyleSheet.flatten(this.props.style);
