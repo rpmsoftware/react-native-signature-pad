@@ -21,6 +21,11 @@ React Native wrapper around @[szimek's](https://github.com/szimek) HTML5 Canvas 
 $ yarn add react-native-signature-pad
 ```
 
+`react-native-signature-pad` needs `react-native-webview` to work so add that as well.
+```sh
+$ yarn add react-native-webview
+```
+
 ## Using a Custom Signature Font
 
 There is an option to generate a signature based off the user's name. You can use your own custom font. Currently, we recommend converting your font file into a data URL (we used [dataurl.net](http://dataurl.net/#dataurlmaker)). Store that in a .js file with the contents similar to something like below:
